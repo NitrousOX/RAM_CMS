@@ -70,5 +70,11 @@ namespace RAM_CMS
                 TextBlock_Error.Text = "";
             }
         }
+
+        private void PasswordBox_Password_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+                e.Handled = true;
+        }
     }
 }
