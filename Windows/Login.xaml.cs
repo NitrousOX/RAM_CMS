@@ -32,8 +32,14 @@ namespace RAM_CMS
             InitializeComponent();
             TextBlock_Error.Visibility = Visibility.Hidden;
             TextBox_Username.Focus();
-            FileStream stream = File.OpenRead("USERS.json");
-            items = JsonSerializer.Deserialize<List<User>>(stream);
+            try
+            {
+                FileStream stream = File.OpenRead("USERS.json");
+                items = JsonSerializer.Deserialize<List<User>>(stream);
+            }catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

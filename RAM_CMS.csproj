@@ -97,6 +97,8 @@
     </Compile>
     <Compile Include="Classes\RAM.cs" />
     <Compile Include="Classes\User.cs" />
+    <Compile Include="Services\XMLReadWrite.cs" />
+    <Compile Include="Services\LoadnWriteRaMService.cs" />
     <Compile Include="Windows\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
@@ -133,8 +135,15 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="RAM_info\RAM_img\" />
     <Folder Include="RAM_info\RAM_rtf\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="RAM_info\RAM_img\Corsair.png" />
+    <Resource Include="RAM_info\RAM_img\Kingston.png" />
+    <Resource Include="RAM_info\RAM_img\Samsung.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="RAM_info\ram_info.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

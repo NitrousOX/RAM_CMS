@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace RAM_CMS.Classes
 {
-    [Serializable]
+    [Serializable()]
     public class RAM
     {
         private int size;
