@@ -1,5 +1,7 @@
-﻿using System;
+﻿using RAM_CMS.Classes;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +21,7 @@ namespace RAM_CMS.Windows
     /// </summary>
     public partial class Add : Window
     {
+        RAM newRam = new RAM();
         public Add()
         {
             InitializeComponent();
@@ -69,10 +72,30 @@ namespace RAM_CMS.Windows
                 TextBlock_Error.Text = "";
             }
         }
-        //TODO
+
         private void Button_browse_Click(object sender, RoutedEventArgs e)
         {
+            var openFileDialog = new Microsoft.Win32.OpenFileDialog();
+            openFileDialog.Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG";
+            bool? opened = openFileDialog.ShowDialog();
 
+            if (opened == true)
+            {
+                //string file_path = System.IO.Path.GetRelativePath(Directory.GetCurrentDirectory(), openFileDialog.FileName);
+                string file_path = openFileDialog.FileName;
+                if (Owner is MainWindow window)
+                {
+                    foreach (RAM ram in window.ram_info)
+                    {
+                        if (ram.Path_img == file_path)
+                        {
+                            MessageBox.Show("This picture is already used", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                            return;
+                        }
+                    }
+                    img_preview.Source = new BitmapImage(new Uri(file_path));
+                }
+            }
         }
     }
 }

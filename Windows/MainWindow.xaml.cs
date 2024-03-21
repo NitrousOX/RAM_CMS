@@ -31,7 +31,7 @@ namespace RAM_CMS
     /// </summary>
     public partial class MainWindow : Window
     {
-        private ObservableCollection<RAM> ram_info = new ObservableCollection<RAM>();
+        public ObservableCollection<RAM> ram_info = new ObservableCollection<RAM>();
         private LoadnWriteRaMService LWservice = new LoadnWriteRaMService();
         Theme theme = new Theme();
         private User user;
@@ -56,6 +56,7 @@ namespace RAM_CMS
         {
             Login login = new Login();
             login.Show();
+            LWservice.WriteRam(ref ram_info);
             addWindow.Close();
             this.Close();
         }
@@ -77,27 +78,43 @@ namespace RAM_CMS
                 Light_mode.IsChecked = true;
             else
                 Dark_mode.IsChecked = true;
-
-
-
-            if (user.Type == User_Role.ADMIN)
-            {
-
-            }
-            else
-            {
-
-            }
         }
         private void Button_izbrisi_Click(object sender, RoutedEventArgs e)
         {
-
+            foreach (var item in ram_info.ToList())
+            {
+                if(item.Checked == true)
+                {
+                    ram_info.Remove(item);
+                }
+            }
         }
 
 
         private void Button_dodaj_Click(object sender, RoutedEventArgs e)
         {
+           addWindow.Owner = this;
            addWindow.Show();
+        }
+
+        private void ListView_checkbox_Checked(object sender, RoutedEventArgs e)
+        {
+            CheckBox checkBox = sender as CheckBox;
+            if (checkBox != null)
+            {
+                var bindingObject = (RAM)checkBox.DataContext;
+                bindingObject.Checked = true;
+            }
+        }
+
+        private void ListView_checkbox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            CheckBox checkBox = sender as CheckBox;
+            if (checkBox != null)
+            {
+                var bindingObject = (RAM)checkBox.DataContext;
+                bindingObject.Checked = false;
+            }
         }
     }
 }

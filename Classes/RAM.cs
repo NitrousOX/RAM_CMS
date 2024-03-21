@@ -4,10 +4,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace RAM_CMS.Classes
 {
-    [Serializable()]
+    [Serializable]
     public class RAM : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
@@ -16,6 +17,8 @@ namespace RAM_CMS.Classes
         private string path_img;
         private string path_rtf;
         private DateTime creation_date;
+        [XmlIgnore]
+        private bool _checked;
 
         public RAM()
         {
@@ -28,6 +31,7 @@ namespace RAM_CMS.Classes
             this.path_img = path_img;
             this.path_rtf = path_rtf;
             this.creation_date = creation_date;
+            _checked = false;
         }
 
         protected virtual void OnPropertyChanged(string name)
@@ -50,5 +54,7 @@ namespace RAM_CMS.Classes
         public string Path_img { get => path_img; set { if (path_img != value) { path_img = value; OnPropertyChanged("Path_img"); } } }
         public string Path_rtf { get => path_rtf; set { if (path_rtf != value) { path_rtf = value; OnPropertyChanged("Path_rtf"); } } }
         public DateTime Creation_date { get => creation_date; set { if (creation_date != value) { creation_date = value; OnPropertyChanged("Creation_date"); } } }
+        [XmlIgnore]
+        public bool Checked { get => _checked; set { _checked = value; } }
     }
 }

@@ -35,8 +35,21 @@ namespace RAM_CMS
             InitializeComponent();
             TextBlock_Error.Visibility = Visibility.Hidden;
             TextBox_Username.Focus();
-            XMLRead read = new XMLRead();
-            users = read.XML_Read_User_list(@"../../RAM_info/user_info.xml");
+            try
+            {
+                XMLRead read = new XMLRead();
+                if (read.XML_Read_User_list(@"../../RAM_info/user_info.xml") != null)
+                {
+                    users = read.XML_Read_User_list(@"../../RAM_info/user_info.xml");
+                }
+                else
+                    throw new Exception();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error while opening user xml program will now shut down" + ex.Message, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                this.Close();
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

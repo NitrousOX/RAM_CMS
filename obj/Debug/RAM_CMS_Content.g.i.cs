@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("pozadina.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("oxygen-icons.org-oxygen-apps-hardware.ico")]
 
 

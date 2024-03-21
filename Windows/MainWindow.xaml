@@ -37,17 +37,28 @@
             <Label x:Name="Label_User_Role_Type" Content="" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Height="38" Width="240" FontSize="15" IsEnabled="False" VerticalContentAlignment="Center"/>
             <Button x:Name="Button_Logout" Content="Log out" Height="32" Width="88" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="20" Click="Button_Logout_Click" Background="{DynamicResource Highlight_color}" Foreground="{DynamicResource White}" Grid.Column="1" Margin="0,0,10,0" Focusable="False"/>
 
+
             <ListView x:Name="ListView_Table" Grid.Row="1" ItemsSource="{Binding}" Background="{DynamicResource Highlight_color_less}" Foreground="{DynamicResource White}" BorderBrush="{DynamicResource Highlight_color}" TabIndex="2">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Selection">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <CheckBox x:Name="ListView_checkbox"/>
+                                    <CheckBox x:Name="ListView_checkbox" Checked="ListView_checkbox_Checked" Unchecked="ListView_checkbox_Unchecked"/>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}"/>
+                        <GridViewColumn Header="Name">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock>
+                                        <Hyperlink>
+                                            <TextBlock Text="{Binding Name}"/>
+                                        </Hyperlink>
+                                    </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                         <GridViewColumn Header="Memory size" DisplayMemberBinding="{Binding Size}"/>
                         <GridViewColumn Header="Image">
                             <GridViewColumn.CellTemplate>
