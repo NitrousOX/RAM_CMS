@@ -1,6 +1,7 @@
 ﻿<Window x:Class="RAM_CMS.Windows.Add"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:fa5="http://schemas.fontawesome.com/icons/"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -44,7 +45,27 @@
             <Button x:Name="Button_browse" Content="Browse" Background="{DynamicResource ResourceKey=Highlight_color}" Foreground="{DynamicResource ResourceKey=White}" Margin="278,64,147,65" TabIndex="2" Click="Button_browse_Click"/>
             <TextBlock x:Name="TextBlock_Error" HorizontalAlignment="Left" Height="49" Margin="210,108,0,0" TextWrapping="Wrap" Foreground="{DynamicResource Highlight_color_less}" VerticalAlignment="Top" Width="143" FontStyle="Italic"/>
             <TextBlock x:Name="TextBlock_WordCount" TextWrapping="Wrap" Grid.Row="3" Foreground="{DynamicResource Highlight_color_less}" HorizontalAlignment="Left" Margin="0,8,0,8"/>
-            <xctk:ColorPicker HorizontalAlignment="Left" Margin="440,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="50"/>
+
+            <ToolBar x:Name="Toolbar_Editor"  Background="{DynamicResource Middle}" HorizontalAlignment="Left" Height="28" Margin="165,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="325">
+                <ToggleButton>
+                    <fa5:SvgAwesome x:Name="ToggleButton_Bold" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource Highlight_color}" Icon="Solid_Bold" ToolTip="Bold selected text"/>
+                </ToggleButton>
+                <Separator Background="{DynamicResource Highlight_color}"/>
+                <ToggleButton>
+                    <fa5:SvgAwesome x:Name="ToggleButton_Italic" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource Highlight_color}" Icon="Solid_Italic" ToolTip="Set italic to seleceted text"/>
+                </ToggleButton>
+                <Separator Background="{DynamicResource Highlight_color}"/>
+                <ToggleButton>
+                    <fa5:SvgAwesome x:Name="ToggleButton_Underline" Height="15" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="{DynamicResource Highlight_color}" Icon="Solid_Underline" ToolTip="Underline selected text"/>
+                </ToggleButton>
+                <Separator Background="{DynamicResource Highlight_color}"/>
+                <ComboBox Name="FontFamilyComboBox" Width="118" IsTextSearchCaseSensitive="False" IsTextSearchEnabled="True" ToolTip="Font family"/>
+                <Separator Background="{DynamicResource Highlight_color}"/>
+                <TextBox x:Name="TextBox_fontSize" Width="27" PreviewTextInput="TextBox_fontSize_PreviewTextInput" TextChanged="TextBox_fontSize_TextChanged" /> px
+                <Separator Background="{DynamicResource Highlight_color}"/>
+                <xctk:ColorPicker x:Name="Color_picker_Editor" Width="45" ToolTip="Color picker" />
+            </ToolBar>
+
         </Grid>
         <Button x:Name="Button_exit" Content="X" HorizontalAlignment="Left" VerticalAlignment="Center" Width="42" Height="38" Background="{DynamicResource Highlight_color}"  TabIndex="3" Foreground="{DynamicResource White}" Focusable="False" FontSize="20" Canvas.Left="458" Click="Button_exit_Click"/>
         <Button x:Name="Button_ADD" Content="Add" Canvas.Left="438" Canvas.Top="463" Height="37" Width="62" HorizontalAlignment="Left" VerticalAlignment="Center"  Background="{DynamicResource ResourceKey=Highlight_color}" Foreground="{DynamicResource ResourceKey=White}" TabIndex="4"/>

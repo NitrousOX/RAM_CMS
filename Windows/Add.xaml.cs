@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -37,6 +38,12 @@ namespace RAM_CMS.Windows
         private void Button_exit_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
+            TextBox_Name.Text = "";
+            TextBox_Size.Text = "";
+            img_preview.Source = null;
+            Color_picker_Editor.SelectedColor = Colors.White;
+            
+
         }
 
         private void TextBox_Name_TextChanged(object sender, TextChangedEventArgs e)
@@ -94,6 +101,27 @@ namespace RAM_CMS.Windows
                         }
                     }
                     img_preview.Source = new BitmapImage(new Uri(file_path));
+                }
+            }
+        }
+
+        private void TextBox_fontSize_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void TextBox_fontSize_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (!String.IsNullOrEmpty(TextBox_fontSize.Text.ToString()))
+            {
+                int size = int.Parse(TextBox_fontSize.Text.ToString());
+                if (size == 0 )
+                {
+                    TextBox_fontSize.Text = "1";
+                }else if(size > 50)
+                {
+                    TextBox_fontSize.Text = "50";
                 }
             }
         }

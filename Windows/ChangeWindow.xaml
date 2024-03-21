@@ -7,5 +7,8 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="RAM_CMS.Windows.ChangeWindow"
         mc:Ignorable="d"
         Title="ChangeWindow" Height="450" Width="800">
-    <Grid/>
+    <Grid>
+        <ComboBox HorizontalAlignment="Left" Margin="120,82,0,0" VerticalAlignment="Top" Width="120"/>
+        <xctk:ValueRangeTextBox HorizontalAlignment="Left" Margin="346,154,0,0" TextWrapping="Wrap" Text="ValueRangeTextBox" VerticalAlignment="Top" Width="120"/>
+    </Grid>
 </Window>
