@@ -9,10 +9,9 @@
         WindowStyle="None"
         AllowsTransparency="True" Background="Transparent"
         WindowStartupLocation="CenterScreen" MouseLeftButtonDown="Window_MouseLeftButtonDown"
-        SizeToContent="WidthAndHeight"
-        >
+        SizeToContent="WidthAndHeight">
     <Canvas Height="500" Width="450">
-        <Path Name="LoginPath" Fill="#DDD5D0" Stroke="Black">
+        <Path Name="LoginPath" Fill="{DynamicResource Window_Background}" Stroke="Black">
             <Path.Data>
                 <PathGeometry>
                     <PathFigure StartPoint="0,0">
@@ -41,14 +40,14 @@
                 <ColumnDefinition/>
 
             </Grid.ColumnDefinitions>
-            <Label Content="Username:" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Width="129" HorizontalContentAlignment="Right" FontWeight="Bold" Height="58" Foreground="#FF586F6B" VerticalContentAlignment="Center" FontSize="20"/>
-            <Label Content="Password:" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Width="130" HorizontalContentAlignment="Right" FontWeight="Bold" Height="64" Foreground="#FF586F6B" VerticalContentAlignment="Center" FontSize="20"/>
-            <TextBox x:Name="TextBox_Username" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Width="182" TabIndex="0" TextChanged="TextBox_Username_TextChanged" Height="36" Background="#FFDDD5D0" Foreground="#FF586F6B" FontSize="20"/>
-            <PasswordBox x:Name="PasswordBox_Password" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Center" Width="182" TabIndex="1" Height="36" Background="#FFDDD5D0" Foreground="#FF586F6B" FontSize="20" PreviewKeyDown="PasswordBox_Password_PreviewKeyDown"/>
-            <Button Grid.Column="1" Content="X" HorizontalAlignment="Right" VerticalAlignment="Top" Width="42" Height="38" Background="#FF586F6B" Click="Button_Click_1" TabIndex="3" Foreground="#FFFDFFFF" Focusable="False" FontSize="20"/>
-            <Label Content="LOGIN" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="2" Width="228" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="75" FontFamily="Bahnschrift SemiLight" Margin="112,0,0,0" Foreground="#FF586F6B"/>
-            <TextBlock x:Name="TextBlock_Error" Grid.Row="3" TextWrapping="Wrap" Text="TextBlock"  Foreground="#FF7F9183" FontSize="15" FontStyle="Italic"  Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
-            <Button x:Name="Button_Login" Content="Login" HorizontalAlignment="Left" Margin="134,20,0,0" Click="Button_Click" RenderTransformOrigin="0.5,0.5" Width="182" Height="64" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Row="4" Background="#FF586F6B" Focusable="True" TabIndex="2" Foreground="#FFFDFFFF" FontSize="30" FontFamily="Bahnschrift SemiLight">
+            <Label Content="Username:" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" Width="129" HorizontalContentAlignment="Right" FontWeight="Bold" Height="58" Foreground="{DynamicResource Highlight_color }" VerticalContentAlignment="Center" FontSize="20"/>
+            <Label Content="Password:" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center" Width="130" HorizontalContentAlignment="Right" FontWeight="Bold" Height="64" Foreground="{DynamicResource Highlight_color }" VerticalContentAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="TextBox_Username" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Width="182" TabIndex="0" TextChanged="TextBox_Username_TextChanged" Height="36" Background="{DynamicResource Window_Background}" Foreground="{DynamicResource Highlight_color}" FontSize="20" PreviewKeyDown="TextBox_Username_PreviewKeyDown"/>
+            <PasswordBox x:Name="PasswordBox_Password" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="2" VerticalAlignment="Center" Width="182" TabIndex="1" Height="36" Background="{DynamicResource Window_Background}" Foreground="{DynamicResource Highlight_color}" FontSize="20" PreviewKeyDown="PasswordBox_Password_PreviewKeyDown"/>
+            <Button Grid.Column="1" Content="X" HorizontalAlignment="Right" VerticalAlignment="Top" Width="42" Height="38" Background="{DynamicResource Highlight_color}" Click="Button_Click_1" TabIndex="3" Foreground="{DynamicResource White}" Focusable="False" FontSize="20"/>
+            <Label Content="LOGIN" HorizontalAlignment="Left" VerticalAlignment="Center" Grid.ColumnSpan="2" Width="228" Height="98" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="75" FontFamily="Bahnschrift SemiLight" Margin="112,0,0,0" Foreground="{DynamicResource Highlight_color}"/>
+            <TextBlock x:Name="TextBlock_Error" Grid.Row="3" TextWrapping="Wrap" Text="TextBlock"  Foreground="{DynamicResource Highlight_color_less}" FontSize="15" FontStyle="Italic"  Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" />
+            <Button x:Name="Button_Login" Content="Login" HorizontalAlignment="Left" Margin="134,20,0,0" Click="Button_Click" RenderTransformOrigin="0.5,0.5" Width="182" Height="64" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Row="4" Background="{DynamicResource Highlight_color}" Focusable="True" TabIndex="2" Foreground="{DynamicResource White}" FontSize="30" FontFamily="Bahnschrift SemiLight">
                 <Button.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform ScaleX="1"/>

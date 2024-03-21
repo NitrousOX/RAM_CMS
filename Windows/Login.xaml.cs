@@ -18,6 +18,8 @@ using System.Windows.Shapes;
 using System.Xml.Serialization;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Windows.Controls.Primitives;
+using RAM_CMS.Services;
 
 namespace RAM_CMS
 {
@@ -26,20 +28,15 @@ namespace RAM_CMS
     /// </summary>
     public partial class Login : Window
     {
-        List<User> items;
+        private List<User> users = new List<User>();
+
         public Login()
         {
             InitializeComponent();
             TextBlock_Error.Visibility = Visibility.Hidden;
             TextBox_Username.Focus();
-            try
-            {
-                FileStream stream = File.OpenRead("USERS.json");
-                items = JsonSerializer.Deserialize<List<User>>(stream);
-            }catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            XMLRead read = new XMLRead();
+            users = read.XML_Read_User_list(@"../../RAM_info/user_info.xml");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -62,11 +59,11 @@ namespace RAM_CMS
                 return;
             }
             
-            foreach (var item in items)
+            foreach (var item in users)
             {
                 if(item.Name == username && item.Password == password)
                 {
-                    MainWindow mainWindow = new MainWindow(new User(username, password, item.Type));
+                    MainWindow mainWindow = new MainWindow(new User(username, password, item.Type , item.Theme));
                     mainWindow.Show();
                     this.Close();
                     return;
@@ -110,6 +107,18 @@ namespace RAM_CMS
         {
             if (e.Key == Key.Space)
                 e.Handled = true;
+            else if (e.Key == Key.Enter)
+            {
+                Button_Login.Focus();
+            }
+        }
+
+        private void TextBox_Username_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                PasswordBox_Password.Focus();
+            }
         }
     }
 }

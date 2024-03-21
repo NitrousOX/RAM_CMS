@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:RAM_CMS"
              StartupUri="Windows/Login.xaml">
     <Application.Resources>
-         
+        <SolidColorBrush x:Key="White"                Color="#FFFDFFFF "/>
+        <SolidColorBrush x:Key="Window_Background"    Color="#DDD5D0"/>
+        <SolidColorBrush x:Key="Middle"               Color="#CFC0BD"/>
+        <SolidColorBrush x:Key="Highlited_Background" Color="#B8B8AA"/>
+        <SolidColorBrush x:Key="Highlight_color_less" Color="#7F9183"/>
+        <SolidColorBrush x:Key="Highlight_color"      Color="#FF586F6B"/>
     </Application.Resources>
 </Application>

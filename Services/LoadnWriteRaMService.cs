@@ -10,16 +10,18 @@ namespace RAM_CMS.Services
 {
     public class LoadnWriteRaMService
     {
-        XMLReadWrite XmlReadWrite = new XMLReadWrite();
+        private string Path = @"../../RAM_info/ram_info.xml";
+        XMLRead Read = new XMLRead();
+        XMLWrite Write = new XMLWrite();
 
         public void LoadRam(ref ObservableCollection<RAM> observable)
         {
-            XmlReadWrite.XML_Read_into_collection(ref observable);
+            Read.XML_Read_into_RAM_collection(ref observable, Path);
         }
 
         public void WriteRam(ref ObservableCollection<RAM> observable)
         {
-            XmlReadWrite.XML_Write(observable.ToList());
+            Write.XML_Write_RAM(observable.ToList(),Path);
         }
     }
 }

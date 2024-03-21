@@ -83,6 +83,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Windows\Add.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Windows\Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -96,9 +100,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Classes\RAM.cs" />
+    <Compile Include="Services\Theme.cs" />
     <Compile Include="Classes\User.cs" />
-    <Compile Include="Services\XMLReadWrite.cs" />
+    <Compile Include="Classes\XMLRead.cs" />
     <Compile Include="Services\LoadnWriteRaMService.cs" />
+    <Compile Include="Classes\XMLWrite.cs" />
+    <Compile Include="Windows\Add.xaml.cs">
+      <DependentUpon>Add.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Login.xaml.cs">
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>

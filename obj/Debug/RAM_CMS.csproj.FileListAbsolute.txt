@@ -35,3 +35,6 @@ D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat\RAM_CMS
 D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat\RAM_CMS\bin\Debug\System.Threading.Tasks.Extensions.xml
 D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat\RAM_CMS\bin\Debug\System.ValueTuple.xml
 D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat\RAM_CMS\obj\Debug\RAM_CMS.csproj.CopyComplete
+D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat\RAM_CMS\obj\Debug\App.baml
+D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat\RAM_CMS\obj\Debug\Windows\Add.g.cs
+D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat\RAM_CMS\obj\Debug\Windows\Add.baml
