@@ -33,7 +33,7 @@ namespace RAM_CMS.Classes
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error while loading in RAM data: " + ex.Message.ToString());
+                    MessageBox.Show("Error while loading in RAM data: " + ex.Message.ToString(), "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                     return false;
                 }
             }return false;
@@ -55,7 +55,7 @@ namespace RAM_CMS.Classes
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error while loading in RAM data: " + ex.Message.ToString());
+                    MessageBox.Show("Error while loading in RAM data: " + ex.Message.ToString(), "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                     return null;
                 }
             }
@@ -79,7 +79,7 @@ namespace RAM_CMS.Classes
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error while loading in RAM data: " + ex.Message.ToString());
+                    MessageBox.Show("Error while loading in User data: " + ex.Message.ToString(), "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                     return null;
                 }
             }

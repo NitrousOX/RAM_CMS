@@ -76,7 +76,16 @@ namespace RAM_CMS
             {
                 if(item.Name == username && item.Password == password)
                 {
-                    MainWindow mainWindow = new MainWindow(new User(username, password, item.Type , item.Theme));
+                    User send_data;
+                    if (username == "admin")
+                    {
+                        send_data = new User(username, password, User_Role.ADMIN, item.Theme);
+                    }
+                    else
+                    {
+                        send_data = new User(username, password, User_Role.VISITOR, item.Theme);
+                    }
+                    MainWindow mainWindow = new MainWindow(send_data);
                     mainWindow.Show();
                     this.Close();
                     return;

@@ -17,6 +17,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -74,6 +75,20 @@ namespace RAM_CMS
         private void User_logged()
         {
             Label_User_Role_Type.Content = "Logged in as: " + user.Name;
+            if(user.Type == User_Role.ADMIN)
+            {
+                Button_dodaj.IsEnabled = true;
+                Button_izbrisi.IsEnabled = true;
+                
+            }
+            else
+            {
+                Button_dodaj.IsEnabled = false;
+                Button_dodaj.Background = Brushes.Gray;
+                Button_izbrisi.IsEnabled = false;
+                Button_izbrisi.Background = Brushes.Gray;
+            }
+
             if (user.Theme == "Light")
                 Light_mode.IsChecked = true;
             else
@@ -114,6 +129,22 @@ namespace RAM_CMS
             {
                 var bindingObject = (RAM)checkBox.DataContext;
                 bindingObject.Checked = false;
+            }
+        }
+
+        private void Button_dodaj_MouseEnter(object sender, MouseEventArgs e)
+        {
+            if (Button_dodaj.IsEnabled)
+            {
+                ((Storyboard)Application.Current.Resources["MouseEnterAnimation"]).Begin(Button_dodaj);
+            }
+        }
+
+        private void Button_dodaj_MouseLeave(object sender, MouseEventArgs e)
+        {
+            if (Button_dodaj.IsEnabled)
+            {
+                ((Storyboard)Application.Current.Resources["MouseLeaveAnimation"]).Begin(Button_dodaj);
             }
         }
     }

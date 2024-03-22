@@ -10,5 +10,44 @@
         <SolidColorBrush x:Key="Highlited_Background" Color="#B8B8AA"/>
         <SolidColorBrush x:Key="Highlight_color_less" Color="#7F9183"/>
         <SolidColorBrush x:Key="Highlight_color"      Color="#FF586F6B"/>
+
+        <Storyboard x:Key="MouseEnterAnimation">
+            <DoubleAnimation Storyboard.TargetProperty="(Button.RenderTransform).(ScaleTransform.ScaleX)"
+                             To="1.075" Duration="0:0:0.2"/>
+            <DoubleAnimation Storyboard.TargetProperty="(Button.RenderTransform).(ScaleTransform.ScaleY)"
+                             To="1.075" Duration="0:0:0.2"/>
+        </Storyboard>
+        <Storyboard x:Key="MouseLeaveAnimation">
+            <DoubleAnimation Storyboard.TargetProperty="(Button.RenderTransform).(ScaleTransform.ScaleX)"
+                             To="1" Duration="0:0:0.2"/>
+            <DoubleAnimation Storyboard.TargetProperty="(Button.RenderTransform).(ScaleTransform.ScaleY)"
+                             To="1" Duration="0:0:0.2"/>
+        </Storyboard>
+
+        <Style x:Key="RoundedButtonStyle" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="10">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <BeginStoryboard Storyboard="{StaticResource MouseEnterAnimation}"/>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <BeginStoryboard Storyboard="{StaticResource MouseLeaveAnimation}"/>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
+
+        
     </Application.Resources>
 </Application>

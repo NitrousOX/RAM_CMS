@@ -48,9 +48,16 @@
             </RichTextBox>
 
             <Image x:Name="img_preview" Margin="356,64,44,3"/>
-            <Button x:Name="Button_browse" Content="Browse" Background="{DynamicResource ResourceKey=Highlight_color}" Foreground="{DynamicResource ResourceKey=White}" Margin="278,64,147,65" TabIndex="2" Click="Button_browse_Click"/>
+            <Button x:Name="Button_browse" Content="Browse" Style="{StaticResource RoundedButtonStyle}" Background="{DynamicResource ResourceKey=Highlight_color}" Foreground="{DynamicResource ResourceKey=White}" Margin="278,64,147,65" TabIndex="2" Click="Button_browse_Click" FontSize="16">
+                <Button.RenderTransform>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                </Button.RenderTransform>
+                <Button.RenderTransformOrigin>
+                    <Point X="0.5" Y="0.5"/>
+                </Button.RenderTransformOrigin>
+            </Button>
             <TextBlock x:Name="TextBlock_Error" HorizontalAlignment="Left" Height="49" Margin="210,108,0,0" TextWrapping="Wrap" Foreground="{DynamicResource Highlight_color_less}" VerticalAlignment="Top" Width="143" FontStyle="Italic"/>
-            <TextBlock x:Name="TextBlock_WordCount" TextWrapping="Wrap" Width="155" Grid.Row="3" Foreground="{DynamicResource Highlight_color_less}" HorizontalAlignment="Left" Margin="0,8,0,8"/>
+            <TextBlock x:Name="TextBlock_WordCount" TextWrapping="Wrap" Width="155" Grid.Row="3" Foreground="{DynamicResource Highlight_color_less}" HorizontalAlignment="Left" Margin="0,8,0,8" FontSize="16"/>
 
             <ToolBar x:Name="Toolbar_Editor"  Background="{DynamicResource Middle}" HorizontalAlignment="Left" Height="28" Margin="141,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="349">
                 <ToggleButton x:Name="ToggleButton_Bold" Command="EditingCommands.ToggleBold" >

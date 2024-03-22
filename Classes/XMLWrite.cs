@@ -25,7 +25,7 @@ namespace RAM_CMS.Services
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error while writing to xml document: " + ex.Message);
+                MessageBox.Show("Error while writing to xml document: " + ex.Message, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
         }
@@ -43,7 +43,7 @@ namespace RAM_CMS.Services
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error while writing to xml document: " + ex.Message);
+                MessageBox.Show("Error while writing to xml document: " + ex.Message, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
                 return false;
             }
         }

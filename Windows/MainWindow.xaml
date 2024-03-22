@@ -35,7 +35,14 @@
                 <RowDefinition Height="749*"/>
             </Grid.RowDefinitions>
             <Label x:Name="Label_User_Role_Type" Content="" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Height="38" Width="240" FontSize="15" IsEnabled="False" VerticalContentAlignment="Center"/>
-            <Button x:Name="Button_Logout" Content="Log out" Height="32" Width="88" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="20" Click="Button_Logout_Click" Background="{DynamicResource Highlight_color}" Foreground="{DynamicResource White}" Grid.Column="1" Margin="0,0,10,0" Focusable="False"/>
+            <Button x:Name="Button_Logout" Content="Log out" Height="32" Width="88" Style="{StaticResource RoundedButtonStyle}" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="20" Click="Button_Logout_Click" Background="{DynamicResource Highlight_color}" Foreground="{DynamicResource White}" Grid.Column="1" Margin="0,0,10,0" Focusable="False">
+                <Button.RenderTransform>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                </Button.RenderTransform>
+                <Button.RenderTransformOrigin>
+                    <Point X="0.5" Y="0.5"/>
+                </Button.RenderTransformOrigin>
+            </Button>
 
 
             <ListView x:Name="ListView_Table" Grid.Row="1" ItemsSource="{Binding}" Background="{DynamicResource Highlight_color_less}" Foreground="{DynamicResource White}" BorderBrush="{DynamicResource Highlight_color}" TabIndex="2">
@@ -71,8 +78,22 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <Button x:Name="Button_izbrisi" Content="Delete" Canvas.Left="620" Canvas.Top="173" Grid.Row="1" Grid.Column="1" Width="150" Height="100" Background="{DynamicResource Highlight_color}" Foreground="{DynamicResource White}" Margin="296,275,54,374" FontSize="35" FontFamily="Bahnschrift SemiLight" Click="Button_izbrisi_Click" TabIndex="1"/>
-            <Button x:Name="Button_dodaj" Content="Add" Canvas.Left="620" Canvas.Top="173" Grid.Row="1" Grid.Column="1" Width="150" Height="100" Background="{DynamicResource Highlight_color}" Foreground="{DynamicResource White}" Margin="74,275,276,374" FontSize="35" FontFamily="Bahnschrift SemiLight" Click="Button_dodaj_Click" TabIndex="0"/>
+            <Button x:Name="Button_izbrisi" Content="Delete" Style="{StaticResource RoundedButtonStyle}" Canvas.Left="620" Canvas.Top="173" Grid.Row="1" Grid.Column="1" Width="150" Height="100" Background="{DynamicResource Highlight_color}" Foreground="{DynamicResource White}" Margin="296,275,54,374" FontSize="35" FontFamily="Bahnschrift SemiLight" Click="Button_izbrisi_Click" TabIndex="1">
+                <Button.RenderTransform>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                </Button.RenderTransform>
+                <Button.RenderTransformOrigin>
+                    <Point X="0.5" Y="0.5"/>
+                </Button.RenderTransformOrigin>
+            </Button>
+            <Button x:Name="Button_dodaj" Content="Add" Style="{StaticResource RoundedButtonStyle}" Canvas.Left="620" Canvas.Top="173" Grid.Row="1" Grid.Column="1" Width="150" Height="100" Background="{DynamicResource Highlight_color}" Foreground="{DynamicResource White}" Margin="74,275,276,374" FontSize="35" FontFamily="Bahnschrift SemiLight" Click="Button_dodaj_Click" TabIndex="0" MouseEnter="Button_dodaj_MouseEnter" MouseLeave="Button_dodaj_MouseLeave">
+                <Button.RenderTransform>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                </Button.RenderTransform>
+                <Button.RenderTransformOrigin>
+                    <Point X="0.5" Y="0.5"/>
+                </Button.RenderTransformOrigin>
+            </Button>
             <RadioButton x:Name="Light_mode" Grid.Column="1" GroupName="Mode" Content="Light mode" HorizontalAlignment="Left" Margin="74,0,0,0" VerticalAlignment="Center" Checked="Light_mode_Checked" TabIndex="3"/>
             <RadioButton x:Name="Dark_mode" Grid.Column="1" GroupName="Mode" Content="Dark mode" HorizontalAlignment="Left" Margin="171,0,0,0" VerticalAlignment="Center" Checked="Dark_mode_Checked" TabIndex="4"/>
         </Grid>
