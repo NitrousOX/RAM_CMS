@@ -1,13 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ArrayOfRAM xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <RAM>
-    <Size>8256</Size>
-    <Name>Corsair</Name>
-    <Path_img>../../RAM_info/RAM_img/Corsair.png</Path_img>
-    <Path_rtf>rtfpath</Path_rtf>
-    <Creation_date>2024-03-20T12:56:44.1038676+01:00</Creation_date>
-  </RAM>
-  <RAM>
     <Size>16852</Size>
     <Name>Samsung</Name>
     <Path_img>../../RAM_info/RAM_img/Samsung.png</Path_img>

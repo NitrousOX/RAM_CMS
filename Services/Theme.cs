@@ -17,7 +17,7 @@ namespace RAM_CMS.Classes
             Application.Current.Resources["Middle"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#A9ACA9"));
             Application.Current.Resources["Highlited_Background"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#3F3244"));
             Application.Current.Resources["Highlight_color_less"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#60495A"));
-            Application.Current.Resources["Highlight_color"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#BFC3BA"));
+            Application.Current.Resources["Highlight_color"] = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#5F5AA2"));
         }
 
         public void LightMode() {

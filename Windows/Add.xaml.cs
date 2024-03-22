@@ -14,6 +14,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Xceed.Wpf.Toolkit;
+using MessageBox = System.Windows.MessageBox;
 
 namespace RAM_CMS.Windows
 {
@@ -25,9 +27,16 @@ namespace RAM_CMS.Windows
         RAM newRam = new RAM();
         public Add()
         {
+            List<double> numbers = new List<double>();
+            for (double i = 1; i <= 50; i++)
+            {
+                numbers.Add(i);
+            }
             InitializeComponent();
             TextBlock_Error.Visibility = Visibility.Hidden;
             TextBox_Name.Focus();
+            FontFamilyComboBox.ItemsSource = Fonts.SystemFontFamilies.OrderBy(f => f.Source);
+            ComboBox_fontSize.ItemsSource = numbers;
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -105,24 +114,71 @@ namespace RAM_CMS.Windows
             }
         }
 
-        private void TextBox_fontSize_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void RichTextBox_rtf_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Regex regex = new Regex("[^0-9]+");
-            e.Handled = regex.IsMatch(e.Text);
+            string richText = new TextRange(RichTextBox_rtf.Document.ContentStart, RichTextBox_rtf.Document.ContentEnd).Text;
+            int wordCount = CountWords(richText);
+            TextBlock_WordCount.Text = "Words: " + wordCount;
+        }
+        static int CountWords(string input)
+        {
+            string pattern = @"\b\w+\b";
+            MatchCollection matches = Regex.Matches(input, pattern);
+            return matches.Count;
         }
 
-        private void TextBox_fontSize_TextChanged(object sender, TextChangedEventArgs e)
+        private void RichTextBox_rtf_SelectionChanged(object sender, RoutedEventArgs e)
         {
-            if (!String.IsNullOrEmpty(TextBox_fontSize.Text.ToString()))
+            object fontWeight = RichTextBox_rtf.Selection.GetPropertyValue(Inline.FontWeightProperty);
+            object fontStyle = RichTextBox_rtf.Selection.GetPropertyValue(Inline.FontStyleProperty);
+            object textDecoration = RichTextBox_rtf.Selection.GetPropertyValue(Inline.TextDecorationsProperty);
+            object fontFamily = RichTextBox_rtf.Selection.GetPropertyValue(Inline.FontFamilyProperty);
+            object fontSize = RichTextBox_rtf.Selection.GetPropertyValue(Inline.FontSizeProperty);
+            object textColor = RichTextBox_rtf.Selection.GetPropertyValue(Inline.ForegroundProperty);
+
+            ToggleButton_Bold.IsChecked = (fontWeight != DependencyProperty.UnsetValue) && (fontWeight.Equals(FontWeights.Bold));
+            ToggleButton_Italic.IsChecked = (fontStyle != DependencyProperty.UnsetValue) && (fontStyle.Equals(FontStyles.Italic));
+            ToggleButton_Underline.IsChecked = (textDecoration != DependencyProperty.UnsetValue) && (textDecoration.Equals(TextDecorations.Underline));
+            FontFamilyComboBox.SelectedItem = fontFamily;
+            ComboBox_fontSize.SelectedItem = fontSize;
+            if (textColor is SolidColorBrush)
             {
-                int size = int.Parse(TextBox_fontSize.Text.ToString());
-                if (size == 0 )
-                {
-                    TextBox_fontSize.Text = "1";
-                }else if(size > 50)
-                {
-                    TextBox_fontSize.Text = "50";
-                }
+                SolidColorBrush brush = (SolidColorBrush)textColor;
+                Color color = brush.Color;
+                // Now you have the color of the text in the current selection
+                Color_picker_Editor.SelectedColor = color;
+            }
+
+
+
+        }
+
+        private void FontFamilyComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (FontFamilyComboBox.SelectedItem != null && !RichTextBox_rtf.Selection.IsEmpty)
+            {
+                RichTextBox_rtf.Selection.ApplyPropertyValue(Inline.FontFamilyProperty, FontFamilyComboBox.SelectedItem);
+            }
+        }
+
+
+        private void ComboBox_fontSize_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ComboBox_fontSize.SelectedItem != null && !RichTextBox_rtf.Selection.IsEmpty)
+            {
+                RichTextBox_rtf.Selection.ApplyPropertyValue(Inline.FontSizeProperty, ComboBox_fontSize.SelectedItem);
+            }
+        }
+
+        private void ColorPicker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<System.Windows.Media.Color?> e)
+        {
+            if (Color_picker_Editor.SelectedColor.HasValue)
+            {
+                Color selectedColor = Color_picker_Editor.SelectedColor.Value;
+
+                SolidColorBrush newBrush = new SolidColorBrush(selectedColor);
+
+                RichTextBox_rtf.Selection.ApplyPropertyValue(TextElement.ForegroundProperty, newBrush);
             }
         }
     }
