@@ -85,6 +85,6 @@
 
         </Grid>
         <Button x:Name="Button_exit" Content="X" HorizontalAlignment="Left" VerticalAlignment="Center" Width="42" Height="38" Background="{DynamicResource Highlight_color}"  TabIndex="3" Foreground="{DynamicResource White}" Focusable="False" FontSize="20" Canvas.Left="458" Click="Button_exit_Click"/>
-        <Button x:Name="Button_ADD" Content="Add" Canvas.Left="438" Canvas.Top="463" Height="37" Width="62" HorizontalAlignment="Left" VerticalAlignment="Center"  Background="{DynamicResource ResourceKey=Highlight_color}" Foreground="{DynamicResource ResourceKey=White}" TabIndex="4"/>
+        <Button x:Name="Button_ADD" Content="Add" Canvas.Left="438" Canvas.Top="463" Height="37" Width="62" HorizontalAlignment="Left" VerticalAlignment="Center"  Background="{DynamicResource ResourceKey=Highlight_color}" Foreground="{DynamicResource ResourceKey=White}" TabIndex="4" Click="Button_ADD_Click"/>
     </Canvas>
 </Window>

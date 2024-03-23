@@ -36,8 +36,7 @@ namespace RAM_CMS
         private LoadnWriteRaMService LWservice = new LoadnWriteRaMService();
         Theme theme = new Theme();
         private User user;
-        Add addWindow = new Add();
-
+                Add addWindow = new Add();
         public MainWindow(User user)
         {
             this.user = user; 
@@ -55,6 +54,7 @@ namespace RAM_CMS
 
         private void Button_Logout_Click(object sender, RoutedEventArgs e)
         {
+
             Login login = new Login();
             login.Show();
             LWservice.WriteRam(ref ram_info);
@@ -146,6 +146,23 @@ namespace RAM_CMS
             {
                 ((Storyboard)Application.Current.Resources["MouseLeaveAnimation"]).Begin(Button_dodaj);
             }
+        }
+
+        private void Hyperlink_Click(object sender, RoutedEventArgs e)
+        {
+            if(user.Name == "admin")
+            {
+                Hyperlink link = sender as Hyperlink;
+                var bindingObject = (RAM)link.DataContext;
+                addWindow = new Add(bindingObject);
+                addWindow.Show();
+            }
+            else
+            {
+                ChangeWindow View = new ChangeWindow();
+                View.Show();
+            }
+
         }
     }
 }

@@ -56,9 +56,9 @@ D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat\RAM_CMS
 D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat\RAM_CMS\bin\Debug\ru\Xceed.Wpf.AvalonDock.resources.dll
 D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat\RAM_CMS\bin\Debug\sv\Xceed.Wpf.AvalonDock.resources.dll
 D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat\RAM_CMS\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
-D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat\RAM_CMS\obj\Debug\Windows\ChangeWindow.g.cs
-D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat\RAM_CMS\obj\Debug\Windows\ChangeWindow.baml
 D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat\RAM_CMS\bin\Debug\FontAwesome5.dll
 D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat\RAM_CMS\bin\Debug\FontAwesome5.Net.dll
 D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat\RAM_CMS\bin\Debug\FontAwesome5.xml
 D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat\RAM_CMS\bin\Debug\FontAwesome5.Net.xml
+D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat\RAM_CMS\obj\Debug\Windows\ViewWindow.g.cs
+D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat\RAM_CMS\obj\Debug\Windows\ViewWindow.baml

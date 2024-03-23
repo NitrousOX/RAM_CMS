@@ -25,14 +25,28 @@ namespace RAM_CMS.Windows
     public partial class Add : Window
     {
         RAM newRam = new RAM();
+        bool add_flag = false;
         public Add()
+        {
+            InitializeComponent();
+            LoadIn();
+            Button_ADD.Content = "ADD";
+            add_flag = true;
+        }
+        public Add(RAM ram)
+        {
+            InitializeComponent();
+            LoadIn();
+            Button_ADD.Content = "CHANGE";
+        }
+
+        private void LoadIn()
         {
             List<double> numbers = new List<double>();
             for (double i = 1; i <= 50; i++)
             {
                 numbers.Add(i);
             }
-            InitializeComponent();
             TextBlock_Error.Visibility = Visibility.Hidden;
             TextBox_Name.Focus();
             FontFamilyComboBox.ItemsSource = Fonts.SystemFontFamilies.OrderBy(f => f.Source);
@@ -47,13 +61,15 @@ namespace RAM_CMS.Windows
         private void Button_exit_Click(object sender, RoutedEventArgs e)
         {
             this.Hide();
+            add_flag = false;
             TextBox_Name.Text = "";
             TextBox_Size.Text = "";
+            RichTextBox_rtf.SelectAll();
+            RichTextBox_rtf.Selection.Text = "";
             img_preview.Source = null;
             Color_picker_Editor.SelectedColor = Colors.White;
-            
-
         }
+        
 
         private void TextBox_Name_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -110,6 +126,7 @@ namespace RAM_CMS.Windows
                         }
                     }
                     img_preview.Source = new BitmapImage(new Uri(file_path));
+                    newRam.Path_img = file_path;
                 }
             }
         }
@@ -145,12 +162,8 @@ namespace RAM_CMS.Windows
             {
                 SolidColorBrush brush = (SolidColorBrush)textColor;
                 Color color = brush.Color;
-                // Now you have the color of the text in the current selection
                 Color_picker_Editor.SelectedColor = color;
             }
-
-
-
         }
 
         private void FontFamilyComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -180,6 +193,51 @@ namespace RAM_CMS.Windows
 
                 RichTextBox_rtf.Selection.ApplyPropertyValue(TextElement.ForegroundProperty, newBrush);
             }
+        }
+
+        private void Button_ADD_Click(object sender, RoutedEventArgs e)
+        {
+            if (CheckB4Adding() && add_flag)
+            {
+                Microsoft.Win32.SaveFileDialog myDlg = new Microsoft.Win32.SaveFileDialog();
+                myDlg.DefaultExt = "*.rtf";
+                myDlg.Filter = "RTF Files|*.rtf";
+                Nullable<bool> myResult = myDlg.ShowDialog();
+
+                RichTextBox_rtf.SelectAll();
+                RichTextBox_rtf.Selection.Save(new FileStream(myDlg.FileName, FileMode.OpenOrCreate, FileAccess.Write), DataFormats.Rtf);
+
+
+                newRam.Name = TextBox_Name.Text.ToString();
+                newRam.Size = int.Parse(TextBox_Size.Text);
+                newRam.Path_rtf = myDlg.FileName;
+                newRam.Creation_date = DateTime.Now;
+
+                if (Owner is MainWindow window)
+                {
+                    window.ram_info.Add(newRam);
+                }
+
+                Button_exit_Click(null, null);
+            }
+        }
+
+        private bool CheckB4Adding()
+        {
+            if (String.IsNullOrEmpty(TextBox_Name.Text))
+            {
+                MessageBox.Show("Cant leave Name empty before adding/changing","Error",MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }else if (String.IsNullOrEmpty(TextBox_Size.Text))
+            {
+                MessageBox.Show("Cant leave Size empty before adding/changing","Error",MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }else if (img_preview.Source == null)
+            {
+                MessageBox.Show("Cant leave Image empty before adding/changing","Error",MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            return true;
         }
     }
 }
