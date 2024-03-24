@@ -8,6 +8,6 @@
   <User>
     <Name>user</Name>
     <Password>user</Password>
-    <Theme>Dark</Theme>
+    <Theme>Light</Theme>
   </User>
 </ArrayOfUser>

@@ -32,11 +32,10 @@ namespace RAM_CMS
     /// </summary>
     public partial class MainWindow : Window
     {
-        public ObservableCollection<RAM> ram_info = new ObservableCollection<RAM>();
         private LoadnWriteRaMService LWservice = new LoadnWriteRaMService();
+        public ObservableCollection<RAM> ram_info = new ObservableCollection<RAM>();
         Theme theme = new Theme();
         private User user;
-                Add addWindow = new Add();
         public MainWindow(User user)
         {
             this.user = user; 
@@ -54,11 +53,9 @@ namespace RAM_CMS
 
         private void Button_Logout_Click(object sender, RoutedEventArgs e)
         {
-
-            Login login = new Login();
-            login.Show();
+            if (Owner is Login win)
+                win.Show();
             LWservice.WriteRam(ref ram_info);
-            addWindow.Close();
             this.Close();
         }
 
@@ -101,6 +98,7 @@ namespace RAM_CMS
                 if(item.Checked == true)
                 {
                     ram_info.Remove(item);
+                    File.Delete(item.Path_rtf);
                 }
             }
         }
@@ -108,6 +106,8 @@ namespace RAM_CMS
 
         private void Button_dodaj_Click(object sender, RoutedEventArgs e)
         {
+            Add addWindow = new Add();
+            addWindow = new Add();
            addWindow.Owner = this;
            addWindow.Show();
         }
@@ -154,13 +154,19 @@ namespace RAM_CMS
             {
                 Hyperlink link = sender as Hyperlink;
                 var bindingObject = (RAM)link.DataContext;
-                addWindow = new Add(bindingObject);
-                addWindow.Show();
+                EditWindow edit = new EditWindow(bindingObject);
+                edit.Owner = this;
+                edit.Show();
+                this.Hide();
             }
             else
             {
-                ChangeWindow View = new ChangeWindow();
+                Hyperlink link = sender as Hyperlink;
+                var bindingObject = (RAM)link.DataContext;
+                ChangeWindow View = new ChangeWindow(bindingObject);
+                View.Owner = this;
                 View.Show();
+                this.Hide();
             }
 
         }

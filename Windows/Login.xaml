@@ -9,7 +9,7 @@
         WindowStyle="None"
         AllowsTransparency="True" Background="Transparent"
         WindowStartupLocation="CenterScreen" MouseLeftButtonDown="Window_MouseLeftButtonDown"
-        SizeToContent="WidthAndHeight">
+        SizeToContent="WidthAndHeight" >
     <Window.Resources>
         <Storyboard x:Key="LabelMouseEnterAnimation">
             <DoubleAnimation Storyboard.TargetProperty="Height"

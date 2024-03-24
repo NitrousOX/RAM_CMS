@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -15,37 +14,51 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Xceed.Wpf.Toolkit;
-using static System.Net.Mime.MediaTypeNames;
-using MessageBox = System.Windows.MessageBox;
 
 namespace RAM_CMS.Windows
 {
     /// <summary>
-    /// Interaction logic for Add.xaml
+    /// Interaction logic for EditWindow.xaml
     /// </summary>
-    public partial class Add : Window
+    public partial class EditWindow : Window
     {
-        RAM newRam = new RAM();
-       
-        public Add()
+        RAM changeRam = new RAM();
+        public EditWindow(RAM ram)
         {
             InitializeComponent();
+            changeRam = ram;
+            TextBox_Name.Text = ram.Name;
+            TextBox_Size.Text = ram.Size.ToString();
+            img_preview.Source = new BitmapImage(new Uri(ram.Path_img));
+            System.IO.FileStream streamToRtfFile = new System.IO.FileStream(ram.Path_rtf, System.IO.FileMode.Open);
+            RichTextBox_rtf.Selection.Load(streamToRtfFile, DataFormats.Rtf);
         }
-
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
+        }
+
+        private void Button_ADD_Click(object sender, RoutedEventArgs e)
+        {
+            if (CheckB4Adding())
+            {
+                changeRam.Name = TextBox_Name.Text.ToString();
+                changeRam.Size = int.Parse(TextBox_Size.Text);
+                changeRam.Creation_date = DateTime.Now;
+
+                RichTextBox_rtf.SelectAll();
+                RichTextBox_rtf.Selection.Save(new FileStream(changeRam.Path_rtf, FileMode.OpenOrCreate, FileAccess.Write), DataFormats.Rtf);
+
+                MessageBox.Show("Successfuly changed item","Information",MessageBoxButton.OK,MessageBoxImage.Information);
+            }
         }
 
         private void Button_exit_Click(object sender, RoutedEventArgs e)
         {
             if (Owner is MainWindow wind)
                 wind.Show();
-            Window_Loaded();
             this.Close();
         }
-        
 
         private void TextBox_Name_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -102,9 +115,28 @@ namespace RAM_CMS.Windows
                         }
                     }
                     img_preview.Source = new BitmapImage(new Uri(file_path));
-                    newRam.Path_img = file_path;
+                    changeRam.Path_img = file_path;
                 }
             }
+        }
+        private bool CheckB4Adding()
+        {
+            if (String.IsNullOrEmpty(TextBox_Name.Text))
+            {
+                MessageBox.Show("Cant leave Name empty before adding/changing", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            else if (String.IsNullOrEmpty(TextBox_Size.Text))
+            {
+                MessageBox.Show("Cant leave Size empty before adding/changing", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            else if (img_preview.Source == null)
+            {
+                MessageBox.Show("Cant leave Image empty before adding/changing", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return false;
+            }
+            return true;
         }
 
         private void RichTextBox_rtf_TextChanged(object sender, TextChangedEventArgs e)
@@ -140,8 +172,8 @@ namespace RAM_CMS.Windows
                 Color color = brush.Color;
                 Color_picker_Editor.SelectedColor = color;
             }
-        }
 
+        }
         private void FontFamilyComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (FontFamilyComboBox.SelectedItem != null && !RichTextBox_rtf.Selection.IsEmpty)
@@ -149,8 +181,6 @@ namespace RAM_CMS.Windows
                 RichTextBox_rtf.Selection.ApplyPropertyValue(Inline.FontFamilyProperty, FontFamilyComboBox.SelectedItem);
             }
         }
-
-
         private void ComboBox_fontSize_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (ComboBox_fontSize.SelectedItem != null && !RichTextBox_rtf.Selection.IsEmpty)
@@ -158,7 +188,6 @@ namespace RAM_CMS.Windows
                 RichTextBox_rtf.Selection.ApplyPropertyValue(Inline.FontSizeProperty, ComboBox_fontSize.SelectedItem);
             }
         }
-
         private void ColorPicker_SelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<System.Windows.Media.Color?> e)
         {
             if (Color_picker_Editor.SelectedColor.HasValue)
@@ -171,53 +200,7 @@ namespace RAM_CMS.Windows
             }
         }
 
-        private void Button_ADD_Click(object sender, RoutedEventArgs e)
-        {
-            if (CheckB4Adding())
-            {
-                Microsoft.Win32.SaveFileDialog myDlg = new Microsoft.Win32.SaveFileDialog();
-                myDlg.DefaultExt = "*.rtf";
-                myDlg.Filter = "RTF Files|*.rtf";
-                Nullable<bool> myResult = myDlg.ShowDialog();
-                try { 
-                RichTextBox_rtf.SelectAll();
-                RichTextBox_rtf.Selection.Save(new FileStream(myDlg.FileName, FileMode.OpenOrCreate, FileAccess.Write), DataFormats.Rtf);
-                MessageBox.Show("Successfuly changed item", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
-                }catch (Exception ex) { MessageBox.Show(ex.Message); }
-
-                newRam.Name = TextBox_Name.Text.ToString();
-                newRam.Size = int.Parse(TextBox_Size.Text);
-                newRam.Path_rtf = myDlg.FileName;
-                newRam.Creation_date = DateTime.Now;
-
-                if (Owner is MainWindow window)
-                {
-                    window.ram_info.Add(newRam);
-                }
-
-                Button_exit_Click(null, null);
-            }
-        }
-
-        private bool CheckB4Adding()
-        {
-            if (String.IsNullOrEmpty(TextBox_Name.Text))
-            {
-                MessageBox.Show("Cant leave Name empty before adding/changing","Error",MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
-            }else if (String.IsNullOrEmpty(TextBox_Size.Text))
-            {
-                MessageBox.Show("Cant leave Size empty before adding/changing","Error",MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
-            }else if (img_preview.Source == null)
-            {
-                MessageBox.Show("Cant leave Image empty before adding/changing","Error",MessageBoxButton.OK, MessageBoxImage.Error);
-                return false;
-            }
-            return true;
-        }
-
-        private void Window_Loaded()
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             List<double> numbers = new List<double>();
             for (double i = 1; i <= 50; i++)

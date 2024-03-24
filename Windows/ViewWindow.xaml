@@ -6,9 +6,42 @@
         xmlns:local="clr-namespace:RAM_CMS.Windows"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" x:Class="RAM_CMS.Windows.ChangeWindow"
         mc:Ignorable="d"
-        Title="ChangeWindow" Height="450" Width="800">
-    <Grid>
-        <ComboBox HorizontalAlignment="Left" Margin="120,82,0,0" VerticalAlignment="Top" Width="120"/>
-        <xctk:ValueRangeTextBox HorizontalAlignment="Left" Margin="346,154,0,0" TextWrapping="Wrap" Text="ValueRangeTextBox" VerticalAlignment="Top" Width="120"/>
-    </Grid>
+        Title="ChangeWindow" 
+        WindowStyle="None"
+        AllowsTransparency="True" Background="Transparent"
+        WindowStartupLocation="CenterScreen"
+        SizeToContent="WidthAndHeight" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+    <Canvas Width="500" Height="500">
+        <Path Name="ViewPath" Fill="{DynamicResource Window_Background}" Stroke="Black">
+            <Path.Data>
+                <PathGeometry>
+                    <PathFigure StartPoint="0,0">
+                        <LineSegment Point="0,500"/>
+                        <LineSegment Point="500,500"/>
+                        <LineSegment Point="500,0"/>
+                    </PathFigure>
+                </PathGeometry>
+            </Path.Data>
+        </Path>
+        <Grid Width="500" Height="500">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button Grid.Row="0" Content="X" HorizontalAlignment="Right" VerticalAlignment="Top" Width="42" Height="38" Background="{DynamicResource Highlight_color}" Click="Button_Click_1" TabIndex="3" Foreground="{DynamicResource White}" Focusable="False" FontSize="20"/>
+            <RichTextBox x:Name="RTF_VIEW" Grid.Row="1" Focusable="False" IsHitTestVisible="False" Background="{DynamicResource Highlight_color_less}" Foreground="{DynamicResource White}">
+                <FlowDocument>
+                    <Paragraph>
+                    </Paragraph>
+                </FlowDocument>
+            </RichTextBox>
+            <Image x:Name="img_preview" Height="150" Canvas.Left="34" Canvas.Top="48" Width="150" Margin="27,50,323,50"/>
+            <Label x:Name="Label_name" Content="Name" HorizontalAlignment="Left" Margin="250,98,0,0" VerticalAlignment="Top" Height="36" Width="64" Foreground="{DynamicResource Highlight_color}" FontSize="20"/>
+            <Label x:Name="Labe_size" Content="Size" HorizontalAlignment="Left" Margin="269,142,0,0" VerticalAlignment="Top" Height="38" Width="45" Foreground="{DynamicResource Highlight_color}" FontSize="20"/>
+            <Label x:Name="Labe_Date" Content="Date added" HorizontalAlignment="Left" Margin="202,183,0,0" VerticalAlignment="Top" Height="38" Width="112" Foreground="{DynamicResource Highlight_color}" FontSize="20"/>
+            <TextBox x:Name="TextBox_Name" TextWrapping="Wrap" Margin="321,98,21,116" Background="{DynamicResource Window_Background}" Foreground="{DynamicResource Highlight_color}" FontSize="18" TabIndex="0" Focusable="False" IsHitTestVisible="False"/>
+            <TextBox x:Name="TextBox_Date" TextWrapping="Wrap" Margin="321,185,21,29" Background="{DynamicResource Window_Background}" Foreground="{DynamicResource Highlight_color}" FontSize="18" TabIndex="0" Focusable="False" IsHitTestVisible="False"/>
+            <TextBox x:Name="TextBox_Size" TextWrapping="Wrap" Margin="321,142,21,72" Background="{DynamicResource Window_Background}" Foreground="{DynamicResource Highlight_color}" FontSize="18" TabIndex="0" Focusable="False" IsHitTestVisible="False"/>
+        </Grid>
+    </Canvas>
 </Window>

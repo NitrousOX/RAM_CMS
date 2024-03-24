@@ -86,8 +86,10 @@ namespace RAM_CMS
                         send_data = new User(username, password, User_Role.VISITOR, item.Theme);
                     }
                     MainWindow mainWindow = new MainWindow(send_data);
+                    mainWindow.Owner = this;
                     mainWindow.Show();
-                    this.Close();
+                    Window_Loaded();
+                    this.Hide();
                     return;
                 }
             }
@@ -141,6 +143,12 @@ namespace RAM_CMS
             {
                 PasswordBox_Password.Focus();
             }
+        }
+
+        private void Window_Loaded()
+        {
+            TextBox_Username.Text = string.Empty;
+            PasswordBox_Password.Password = string.Empty;
         }
     }
 }
