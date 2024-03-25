@@ -1,24 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ArrayOfRAM xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <RAM>
-    <Size>654</Size>
-    <Name>Kingston</Name>
-    <Path_img>D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat\RAM_CMS\RAM_info\RAM_img\Kingston.png</Path_img>
-    <Path_rtf>D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat\RAM_CMS\RAM_info\RAM_rtf\Samsung.rtf</Path_rtf>
-    <Creation_date>2024-03-25T23:45:43.0009318+01:00</Creation_date>
-  </RAM>
-  <RAM>
-    <Size>68796</Size>
-    <Name>Samsung</Name>
-    <Path_img>D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat\RAM_CMS\RAM_info\RAM_img\Samsung.png</Path_img>
-    <Path_rtf>D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat\RAM_CMS\RAM_info\RAM_rtf\Samsung1.rtf</Path_rtf>
-    <Creation_date>2024-03-23T17:33:51.6931149+01:00</Creation_date>
-  </RAM>
-  <RAM>
-    <Size>6123</Size>
-    <Name>Corsair</Name>
-    <Path_img>D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat\RAM_CMS\RAM_info\RAM_img\Corsair.png</Path_img>
-    <Path_rtf>D:\Skola\Fakultet\6.semestar\Inzinjerstvo upotrebljivosti\Vezbe\Projekat\RAM_CMS\RAM_info\RAM_rtf\Corsair.rtf</Path_rtf>
-    <Creation_date>2024-03-26T00:27:14.5728869+01:00</Creation_date>
-  </RAM>
-</ArrayOfRAM>
+<ArrayOfRAM xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" />
