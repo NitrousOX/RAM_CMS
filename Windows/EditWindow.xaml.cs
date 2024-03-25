@@ -32,10 +32,24 @@ namespace RAM_CMS.Windows
             img_preview.Source = new BitmapImage(new Uri(ram.Path_img));
             System.IO.FileStream streamToRtfFile = new System.IO.FileStream(ram.Path_rtf, System.IO.FileMode.Open);
             RichTextBox_rtf.Selection.Load(streamToRtfFile, DataFormats.Rtf);
+            OnLoad();
         }
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
+        }
+
+        private void OnLoad()
+        {
+            List<double> numbers = new List<double>();
+            for (double i = 1; i <= 50; i++)
+            {
+                numbers.Add(i);
+            }
+            TextBlock_Error.Visibility = Visibility.Hidden;
+            TextBox_Name.Focus();
+            FontFamilyComboBox.ItemsSource = Fonts.SystemFontFamilies.OrderBy(f => f.Source);
+            ComboBox_fontSize.ItemsSource = numbers;
         }
 
         private void Button_ADD_Click(object sender, RoutedEventArgs e)
@@ -200,17 +214,5 @@ namespace RAM_CMS.Windows
             }
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            List<double> numbers = new List<double>();
-            for (double i = 1; i <= 50; i++)
-            {
-                numbers.Add(i);
-            }
-            TextBlock_Error.Visibility = Visibility.Hidden;
-            TextBox_Name.Focus();
-            FontFamilyComboBox.ItemsSource = Fonts.SystemFontFamilies.OrderBy(f => f.Source);
-            ComboBox_fontSize.ItemsSource = numbers;
-        }
     }
 }

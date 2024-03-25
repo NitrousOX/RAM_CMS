@@ -31,8 +31,20 @@ namespace RAM_CMS.Windows
         public Add()
         {
             InitializeComponent();
+            OnLoad();
         }
-
+        private void OnLoad()
+        {
+            List<double> numbers = new List<double>();
+            for (double i = 1; i <= 50; i++)
+            {
+                numbers.Add(i);
+            }
+            TextBlock_Error.Visibility = Visibility.Hidden;
+            TextBox_Name.Focus();
+            FontFamilyComboBox.ItemsSource = Fonts.SystemFontFamilies.OrderBy(f => f.Source);
+            ComboBox_fontSize.ItemsSource = numbers;
+        }
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             this.DragMove();
@@ -42,7 +54,7 @@ namespace RAM_CMS.Windows
         {
             if (Owner is MainWindow wind)
                 wind.Show();
-            Window_Loaded();
+            OnLoad();
             this.Close();
         }
         
@@ -217,17 +229,5 @@ namespace RAM_CMS.Windows
             return true;
         }
 
-        private void Window_Loaded()
-        {
-            List<double> numbers = new List<double>();
-            for (double i = 1; i <= 50; i++)
-            {
-                numbers.Add(i);
-            }
-            TextBlock_Error.Visibility = Visibility.Hidden;
-            TextBox_Name.Focus();
-            FontFamilyComboBox.ItemsSource = Fonts.SystemFontFamilies.OrderBy(f => f.Source);
-            ComboBox_fontSize.ItemsSource = numbers;
-        }
     }
 }
