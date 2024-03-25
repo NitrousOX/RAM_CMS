@@ -96,6 +96,7 @@ namespace RAM_CMS
 
             TextBlock_Error.Text = "Wrong username or password";
             TextBox_Username.Focus();
+            TextBox_Username.Text = String.Empty;
             TextBlock_Error.Visibility = Visibility.Visible;
 
         }
@@ -142,6 +143,7 @@ namespace RAM_CMS
             if (e.Key == Key.Enter)
             {
                 PasswordBox_Password.Focus();
+                PasswordBox_Password.Password = String.Empty;
             }
         }
 

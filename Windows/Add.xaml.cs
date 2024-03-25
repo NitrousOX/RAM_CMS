@@ -191,16 +191,20 @@ namespace RAM_CMS.Windows
                 myDlg.DefaultExt = "*.rtf";
                 myDlg.Filter = "RTF Files|*.rtf";
                 Nullable<bool> myResult = myDlg.ShowDialog();
-                try { 
-                RichTextBox_rtf.SelectAll();
-                RichTextBox_rtf.Selection.Save(new FileStream(myDlg.FileName, FileMode.OpenOrCreate, FileAccess.Write), DataFormats.Rtf);
-                MessageBox.Show("Successfuly changed item", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
-                }catch (Exception ex) { MessageBox.Show(ex.Message); }
 
                 newRam.Name = TextBox_Name.Text.ToString();
                 newRam.Size = int.Parse(TextBox_Size.Text);
                 newRam.Path_rtf = myDlg.FileName;
                 newRam.Creation_date = DateTime.Now;
+                try { 
+                RichTextBox_rtf.SelectAll();
+                    using (FileStream fs = new FileStream(newRam.Path_rtf, FileMode.OpenOrCreate, FileAccess.Write))
+                    {
+                        RichTextBox_rtf.Selection.Save(fs, DataFormats.Rtf);
+                    }
+
+                    MessageBox.Show("Successfuly added item", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                }catch (Exception ex) { MessageBox.Show(ex.Message); }
 
                 if (Owner is MainWindow window)
                 {
@@ -229,5 +233,21 @@ namespace RAM_CMS.Windows
             return true;
         }
 
+        private void TextBox_Name_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                TextBox_Size.Focus();
+                TextBox_Size.Text = String.Empty;
+            }
+        }
+
+        private void TextBox_Size_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                RichTextBox_rtf.Focus();
+            }
+        }
     }
 }

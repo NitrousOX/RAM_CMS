@@ -61,7 +61,10 @@ namespace RAM_CMS.Windows
                 changeRam.Creation_date = DateTime.Now;
 
                 RichTextBox_rtf.SelectAll();
-                RichTextBox_rtf.Selection.Save(new FileStream(changeRam.Path_rtf, FileMode.OpenOrCreate, FileAccess.Write), DataFormats.Rtf);
+                using (FileStream fs = new FileStream(changeRam.Path_rtf, FileMode.OpenOrCreate, FileAccess.Write))
+                {
+                    RichTextBox_rtf.Selection.Save(fs, DataFormats.Rtf);
+                }
 
                 MessageBox.Show("Successfuly changed item","Information",MessageBoxButton.OK,MessageBoxImage.Information);
             }
@@ -214,5 +217,21 @@ namespace RAM_CMS.Windows
             }
         }
 
+        private void TextBox_Name_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                TextBox_Size.Focus();
+                TextBox_Size.Text = String.Empty;
+            }
+        }
+
+        private void TextBox_Size_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                RichTextBox_rtf.Focus();
+            }
+        }
     }
 }

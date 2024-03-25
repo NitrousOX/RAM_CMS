@@ -43,7 +43,6 @@ namespace RAM_CMS
             User_logged();
             LWservice.LoadRam(ref ram_info);
             ListView_Table.DataContext = ram_info;
-
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -107,9 +106,9 @@ namespace RAM_CMS
         private void Button_dodaj_Click(object sender, RoutedEventArgs e)
         {
             Add addWindow = new Add();
-            addWindow = new Add();
-           addWindow.Owner = this;
-           addWindow.Show();
+            this.Hide();
+            addWindow.Owner = this;
+            addWindow.Show();
         }
 
         private void ListView_checkbox_Checked(object sender, RoutedEventArgs e)

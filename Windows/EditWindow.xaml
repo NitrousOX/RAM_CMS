@@ -33,8 +33,8 @@
             <Label x:Name="Labe_size" Content="Size" HorizontalAlignment="Left" Margin="38,84,0,0" VerticalAlignment="Top" Height="38" Width="64" Foreground="{DynamicResource Highlight_color}" FontSize="20"/>
             <Label x:Name="label_image" Content="Image" HorizontalAlignment="Left" Margin="321,16,0,0" VerticalAlignment="Top" Height="38" Width="66" Foreground="{DynamicResource Highlight_color}" FontSize="20"/>
             <Label x:Name="label_text" Content="Text" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center"  Grid.Row="1" Width="60" Foreground="{DynamicResource Highlight_color}" FontSize="20" Panel.ZIndex="1"/>
-            <TextBox x:Name="TextBox_Name" TextWrapping="Wrap" Margin="38,36,304,95" Background="{DynamicResource Window_Background}" Foreground="{DynamicResource Highlight_color}" TextChanged="TextBox_Name_TextChanged" FontSize="18" TabIndex="0"/>
-            <TextBox x:Name="TextBox_Size" TextWrapping="Wrap" Margin="38,121,304,10" Background="{DynamicResource Window_Background}" Foreground="{DynamicResource Highlight_color}" FontSize="18" TextChanged="TextBox_Size_TextChanged" TabIndex="1" />
+            <TextBox x:Name="TextBox_Name" TextWrapping="Wrap" Margin="38,36,304,95" Background="{DynamicResource Window_Background}" Foreground="{DynamicResource Highlight_color}" TextChanged="TextBox_Name_TextChanged" FontSize="18" TabIndex="0" PreviewKeyDown="TextBox_Name_PreviewKeyDown"/>
+            <TextBox x:Name="TextBox_Size" TextWrapping="Wrap" Margin="38,121,304,10" Background="{DynamicResource Window_Background}" Foreground="{DynamicResource Highlight_color}" FontSize="18" TextChanged="TextBox_Size_TextChanged" TabIndex="1" PreviewKeyDown="TextBox_Size_PreviewKeyDown" />
             <Rectangle Grid.Row="1" Fill="{DynamicResource Highlited_Background}" />
 
             <RichTextBox x:Name="RichTextBox_rtf" Grid.Row="2" Background="{DynamicResource Highlight_color_less}" Foreground="{DynamicResource White}" FontSize="16" TabIndex="3" TextChanged="RichTextBox_rtf_TextChanged" SelectionChanged="RichTextBox_rtf_SelectionChanged">
